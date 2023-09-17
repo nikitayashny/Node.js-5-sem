@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Example</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1>jQuery</h1>
+    <div id="nameContainer"></div>
+    <script>
+        $(document).ready(function() {  // выполняем после готовности всего документа
+            $.ajax({    // для выполнения асинхронного запроса
+                url: '/api/name',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {   
+                    var fullName = data.firstName + ' ' + data.lastName;
+                    $('#nameContainer').text('Full Name: ' + fullName);
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <h1>XMLHttpRequest</h1>
+    <div id="nameContainer"></div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/api/name', true); // настройка запроса
+        xhr.onreadystatechange = function() {   // обработчик события изменения состояния запроса
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);    // преобразование из JSON
+                var fullName = response.firstName + ' ' + response.lastName;
+                document.getElementById('nameContainer').innerText = 'Full Name: ' + fullName;
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>

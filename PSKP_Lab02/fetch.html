@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch Example</title>
+</head>
+<body>
+    <h1>Fetch</h1>
+    <div id="nameContainer"></div>
+    <script>
+        fetch('/api/name')  // возвращает промис который представляет ответ на запрос
+            .then(response => response.json())  // возвращает ответ в формате JSON
+            .then(data => { // преобразование из JSON в прошлом этапе
+                var fullName = data.firstName + ' ' + data.lastName;
+                document.getElementById('nameContainer').innerText = 'Full Name: ' + fullName;
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+    </script>
+</body>
+</html>
