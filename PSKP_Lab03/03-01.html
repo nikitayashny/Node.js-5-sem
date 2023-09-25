@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Server State</title>
+	<script>
+		function getState() {
+			var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/state', true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var state = xhr.responseText;
+					document.getElementById('state').innerText = state;
+				}
+			};
+			xhr.send();
+		}
+
+		setInterval(getState, 1000);
+	</script>
+</head>
+<body>
+	<h1 id="state">{{state}}</span></h1>
+</body>
+</html>
