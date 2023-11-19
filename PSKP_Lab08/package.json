@@ -1,0 +1,14 @@
+{
+  "name": "PSKP_Lab08",
+  "version": "1.0.0",
+  "description": "",
+  "main": "08-01.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}

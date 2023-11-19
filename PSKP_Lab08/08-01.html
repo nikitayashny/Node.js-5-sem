@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>08-01</title>
+  <script>
+    function startWS() {
+      const ws = new WebSocket('ws://localhost:4000');
+
+      ws.onopen = function() {
+        console.log('WebSocket connection opened');
+      };
+
+      ws.onmessage = function(event) {
+        console.log('Message from server:', event.data);
+        const messageElement = document.createElement('p');
+        messageElement.textContent = event.data;
+        document.getElementById('message-container').appendChild(messageElement);
+      };
+
+      ws.onclose = function() {
+        console.log('WebSocket connection closed');
+      };
+
+      let messageNumber = 0;
+      const interval = setInterval(function() {
+        const message = `08-01-client: ${messageNumber++}`;
+        ws.send(message);
+        console.log('Message sent:', message);
+      }, 3000);
+
+      setTimeout(function() {
+        clearInterval(interval);
+        ws.close();
+        console.log('WebSocket connection closed');
+      }, 25000);
+    }
+  </script>
+</head>
+<body>
+  <h1>08-01</h1>
+  <button onclick="startWS()">Start WS</button>
+  <div id="message-container"></div>
+</body>
+</html>
